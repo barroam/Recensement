@@ -32,33 +32,33 @@ $habitant = new Habitant($connexion, null, null, null, null, null, null, null, n
                     <h1>Enregistrement d'un habitant</h1>
                 </div>
                 <div class="card-body">
-                    <form  method="POST" action="" enctype="multipart/form-data">
+                    <form  method="POST" action="ajout.php" enctype="multipart/form-data">
 
                     <label for="">Matricule</label>
-                        <input type="text" name="matricule" placeholder="entrer votre nom" class="form-control">
+                        <input type="text" id="matricule" name="matricule" placeholder="entrer votre Matricule" class="form-control">
 
 
                         <label for="">Nom</label>
-                        <input type="text" name="nom" placeholder="entrer votre nom" class="form-control">
+                        <input type="text" id="nom" name="nom" placeholder="entrer votre Nom" class="form-control">
 
                         <label for="">Prenom</label>
-                        <input type="text" name="prenom" placeholder="entrer votre email" class="form-control">
+                        <input type="text" id="prenom"  name="prenom" placeholder="entrer votre Prenom" class="form-control">
 
                         <label for="">Age</label>
-                        <input type="number" name="age" placeholder="entrer votre téléphone" class="form-control">
+                        <input type="number" id="age" name="age" placeholder="entrer votre Age" class="form-control">
 
                         
                         <label for="">Sexe</label>
-                        <input type="text" name="sexe" placeholder="entrer votre photo" class="form-control">
+                        <input type="text" id="sexe" name="sexe" placeholder="entrer votre Sexe" class="form-control">
 
                         <label for="">Situation Matrimonial</label>
-                        <input type="text" name="situation_matrimonial" placeholder="entrer votre email" class="form-control">
+                        <input type="text" id="situation_matrimonial" name="situation_matrimonial" placeholder="entrer votre Situation matrimonial " class="form-control">
 
                         <label for="">Status</label>
                         <input type="text" name="status" placeholder="entrer votre email" class="form-control">
                       
-                        <input type="submit" name="submit_ajout" value="Enregistrement" class="btn btn-success form-control">
-
+                        <!-- <input type="submit" id="submit_ajout" name="submit_ajout" value="Enregistrement" class="btn btn-success form-control"> -->
+                        <button type="submit" id="submit" name="submit" class="btn btn-success form-control">ajouter</button>
                     </form>
                 </div>
             </div>
@@ -95,9 +95,9 @@ $habitant = new Habitant($connexion, null, null, null, null, null, null, null, n
                 foreach ($resultats as $row) { ?>
                 <!-- Affichage des données dans les lignes du tableau -->
                 <tr class="trow">
+                    <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['matricule']; ?></td>
                     <td><?php echo $row['nom']; ?></td>
-                    <td><?php echo $row['id']; ?></td>>
                     <td><?php echo $row['prenom']; ?></td>
                     <td><?php echo $row['age']; ?></td>
                     <td><?php echo $row['sexe']; ?></td>

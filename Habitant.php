@@ -1,8 +1,9 @@
 <?php
+
 require_once "CRUD.php";
 
  class Habitant implements ICRUD{
-   private $id ;
+
    private $nom;
    private $prenom;
    private $matricule;
@@ -13,9 +14,10 @@ require_once "CRUD.php";
    private $connexion;
 
    //Constructeur de la classe habitant
-   public function __construct($connexion,$nom,$prenom,$matricule,$age,$sexe,$status, $situation_matrimonial,){
+
+   public function __construct($connexion,$nom,$prenom,$matricule,$age,$sexe,$status, $situation_matrimonial){
   $this->connexion=$connexion;
-  
+
   $this->nom =$nom; 
   $this->prenom= $prenom;
   $this->matricule= $matricule;
@@ -25,14 +27,6 @@ require_once "CRUD.php";
   $this->status=$status;
     }
 
-    // les methodes getters et setters id
-      public function getId(){
-        return $this->id;
-      }
-      public function setId($id){
-        $this->id=$id;
-      }
- 
    // les methodes getters et setters Nom
    public function getNom() {
      return $this->nom; }
@@ -89,10 +83,32 @@ require_once "CRUD.php";
     }
 
 
- 
-    public function enregiste(){
-
+    public function enregiste($nom, $prenom, $matricule, $age, $sexe, $status, $situation_matrimoniale)
+    {
+        try {
+            $sql = "INSERT INTO Habitant (matricule, nom, prenom, age, sexe, situation_matrimonial, status) VALUES (:matricule, :nom, :prenom, :age, :sexe, :situation_matrimonial, :status)";
+            $stmt = $this->connexion->prepare($sql);
+    
+            $stmt->bindParam(':matricule', $matricule, PDO::PARAM_STR);
+            $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+            $stmt->bindParam(':age', $age, PDO::PARAM_INT);
+            $stmt->bindParam(':sexe', $sexe, PDO::PARAM_STR);
+            $stmt->bindParam(':situation_matrimonial', $situation_matrimoniale, PDO::PARAM_STR);
+            $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+    
+            //execute la requette
+            $stmt->execute();
+    
+            //rediriger la page
+            header("Location:index.php");
+            exit();
+    
+        } catch (PDOException $e) {
+            die("erreur: impossible d'inserer des données ". $e->getMessage());
+        }
     }
+
     //afficher les données de la bases de données 
     public function afficher(){
 
@@ -103,7 +119,8 @@ require_once "CRUD.php";
         //preparation de la requete 
         $stmt=$this->connexion->prepare( $sql );
 
-        //exécution de la requete
+        //exécution de la requete//}else{
+   // echo"erreur";
         $stmt->execute() ;
 
         //récuparation des resultats 
