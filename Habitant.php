@@ -13,9 +13,9 @@ require_once "CRUD.php";
    private $connexion;
 
    //Constructeur de la classe habitant
-   public function __construct($connexion,$id,$nom,$prenom,$matricule,$age,$sexe,$status, $situation_matrimonial,){
+   public function __construct($connexion,$nom,$prenom,$matricule,$age,$sexe,$status, $situation_matrimonial,){
   $this->connexion=$connexion;
-  $this->id=$id;
+  
   $this->nom =$nom; 
   $this->prenom= $prenom;
   $this->matricule= $matricule;
