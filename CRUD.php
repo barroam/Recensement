@@ -4,8 +4,8 @@
 interface ICRUD{
     public function enregiste();
     public function afficher();
-    public function modifier();
-    public function supprimer();
+    public function modifier($id,$matricule,$nom,$prenom,$age,$sexe,$situation_matrimonial,$status);
+    public function supprimer($id);
     
 }
 ?>

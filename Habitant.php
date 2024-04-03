@@ -116,11 +116,57 @@ require_once "CRUD.php";
 
     }
 
-    public function modifier(){
-
+    public function modifier($id,$matricule,$nom,$prenom,$age,$sexe,$situation_matrimonial,$status){
+      try {
+        // Requête SQL de mise à jour avec des paramètres
+        $sql = "UPDATE Habitant SET matricule = :matricule, nom = :nom, prenom = :prenom, age = :age, sexe = :sexe, situation_matrimonial = :situation_matrimonial, status = :status WHERE id = :id";
+        
+        // Préparation de la requête
+        $stmt = $this->connexion->prepare($sql);
+        
+        // Liaison des valeurs aux paramètres
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $stmt->bindParam(':age', $age, PDO::PARAM_INT);
+        $stmt->bindParam(':sexe', $sexe, PDO::PARAM_STR);
+        $stmt->bindParam(':situation_matrimonial', $situation_matrimonial, PDO::PARAM_STR);
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':matricule', $matricule, PDO::PARAM_STR);
+        
+        // Exécution de la requête
+        $stmt->execute();
+        
+        // Retourne true si la mise à jour a réussi
+        return true;
+         // Redirection vers la page index.php après une insertion réussie
+         header("Location: index.php");
+         exit(); // Assurez-vous d'arrêter l'exécution du script après la redirection
+    } catch(PDOException $e) {
+        // Gestion de l'erreur en la lançant à l'extérieur de la méthode
+        throw new Exception("ERREUR: Impossible de mettre à jour les données. " . $e->getMessage());
     }
-    public function supprimer(){
-
+    }
+    public function supprimer($id){
+      try {
+        // Requête SQL de suppression avec des paramètres
+        $sql = "DELETE FROM Habitant WHERE id = :id";
+        
+        // Préparation de la requête
+        $stmt = $this->connexion->prepare($sql);
+        
+        // Liaison de la valeur de l'ID au paramètre
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        
+        // Exécution de la requête
+        $stmt->execute();
+        
+        // Retourne true si la suppression a réussi
+        return true;
+    } catch(PDOException $e) {
+        // Gestion de l'erreur en la lançant à l'extérieur de la méthode
+        throw new Exception("ERREUR: Impossible de supprimer. " . $e->getMessage());
+    }
     } 
  }
 ?>
