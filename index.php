@@ -120,16 +120,6 @@ $habitant = new Habitant($connexion, null, null, null, null, null, null, null, n
 
 
 
-
-
-
-
-
-
-
-
-
-
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -6,7 +6,7 @@ require_once "Habitant.php";
 
 if(isset($_POST['submit'])){
  var_dump(   $nom = $_POST['nom'],
- $prenom = $_POST['prenom'],
+ $prenom = $_POST['$nom,$prenom,$numero,$xalatprenom'],
  $matricule = $_POST['matricule'],
  $age = $_POST['age'],
  $sexe = $_POST['sexe'],

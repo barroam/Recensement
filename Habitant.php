@@ -18,6 +18,7 @@ require_once "CRUD.php";
    public function __construct($connexion,$nom,$prenom,$matricule,$age,$sexe,$status, $situation_matrimonial){
   $this->connexion=$connexion;
 
+
   $this->nom =$nom; 
   $this->prenom= $prenom;
   $this->matricule= $matricule;
